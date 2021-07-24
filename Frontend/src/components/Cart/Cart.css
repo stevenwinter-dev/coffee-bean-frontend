@@ -1,0 +1,16 @@
+.cart {
+    margin: 10%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.cart h2 {
+    padding: 15px 0;
+    margin-left: 5%;
+}
+
