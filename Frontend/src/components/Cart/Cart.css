@@ -14,3 +14,40 @@
     margin-left: 5%;
 }
 
+.checkout-btn-container {
+    width: 100%;
+    border-top: 1px solid lightgray; 
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-btn {
+    width: 40%;
+    padding: 15px 0;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    transition: .5s;
+    margin: 45px 0;
+}
+
+.checkout-btn:hover {
+    transform: scale(1.05);
+}
+
+.checkout-btn:active {
+    transform: scale(.95);
+}
+
+@media only screen and (max-width: 500px) {
+    .cart {
+        margin: 10% 3%;
+    }
+    .checkout-btn {
+        width: 90%;
+    }
+}
