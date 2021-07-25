@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.send('test!')
 })
 
-app.post('/create-checkout-session', async (req, res) => {
+app.post('/api/create-checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
