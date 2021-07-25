@@ -6,7 +6,7 @@ const stripe = require('stripe')(process.env.API_KEY);
 const YOUR_DOMAIN = 'http://localhost:3000'
 app.use(express.json())
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('test!')
 })
 
