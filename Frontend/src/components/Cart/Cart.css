@@ -16,7 +16,7 @@
 
 .checkout-btn-container {
     width: 100%;
-    border-top: 1px solid lightgray; 
+    /* border-top: 1px solid lightgray;  */
     display: flex;
     justify-content: center;
 }
@@ -41,6 +41,28 @@
 
 .checkout-btn:active {
     transform: scale(.95);
+}
+
+.shipping-container {
+    display: none;
+    transition: 0.9s;
+    width: 80%;
+}
+
+.shipping-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.shipping-form input {
+    padding: 8px;
+}
+
+.card-container {
+    margin-top: 25px;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
 }
 
 @media only screen and (max-width: 500px) {
