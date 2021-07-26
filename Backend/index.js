@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const stripe = require('stripe')(process.env.API_KEY);
 const cors = require('cors')
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const Coffee = require('./models/coffee-model');
 //Frontend URL for Stripe redirects
 const YOUR_DOMAIN = 'http://localhost:3000'
 
@@ -34,6 +35,25 @@ app.post('/api/create-checkout-session', async (req, res) => {
     res.status(500).json({ statusCode: 500, message: err.message })
     }
 })
+// adding new coffee to db
+app.post('/api/create-new-coffee', upload.single('image'), (req, res, next) => {
+  let newTCoffee = {
+      name: req.body.title,
+      desc: req.body.desc,
+      price: req.body.price,
+      weight: req.body.weight,
+      img: {
+          data: req.file.buffer,
+          contentType: req.file.mimetype
+      }
+  }
+  Coffee.create(newCoffee)
+  .then(coffee => {
+      // console.log(coffee)
+      // res.redirect('/route for coffee landing page')
+  })
+  .catch(console.error);
+});
 
     // const session = await stripe.checkout.sessions.create({
     //   payment_method_types: ['card'],
