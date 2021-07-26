@@ -8,24 +8,21 @@ const CoffeeSchema = new Schema({
         required : true
         
     },
-    flavor : {
-        type: String,
-        required : true
+    desc : {
+        flavor : [{ type: String}, {required : true}],
+        roast : [{ type: String}, {required : true}],
+        region : [{ type: String}, {required : true}],
     },
     price : {
-        prices : [{ type: Number}],
-        required : true
+        prices : [{ type: String}, {required : true}],
     },
     weight : {
-        sizeOptions : [{ type: Number}],
-        required : true
+        sizeOptions : [{ type: String}, {required : true}],
     },
-    // img : { 
-    //     data: Buffer, 
-    //     contentType: String,
-       
-        
-    //  },
+    img : { 
+        data: Buffer, 
+        contentType: String, 
+     },
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
