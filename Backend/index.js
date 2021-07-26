@@ -24,6 +24,7 @@ app.get('/api', (req, res) => {
 
 app.post('/api/create-checkout-session', async (req, res) => {
   try {
+    console.log(req.body)
     const { amount } = req.body
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
