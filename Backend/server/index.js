@@ -4,7 +4,10 @@ const app = express()
 const stripe = require('stripe')(process.env.API_KEY);
 const cors = require('cors')
 const methodOverride = require('method-override');
-const Coffee = require('./models/coffee-model');
+const fs = require('fs');
+const multer = require('multer');
+const path = require('path');
+const Coffee = require('../models/coffee-model');
 //Frontend URL for Stripe redirects
 const YOUR_DOMAIN = 'http://localhost:3000'
 
@@ -17,10 +20,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.get('/api', (req, res) => {
-    res.send('test!')
-})
 
 app.post('/api/create-checkout-session', async (req, res) => {
   try {
@@ -36,9 +35,32 @@ app.post('/api/create-checkout-session', async (req, res) => {
     res.status(500).json({ statusCode: 500, message: err.message })
     }
 })
+
+///////////////////////////////////////////////////////////////////////////////
+// test route from server to React app
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from MongoDB server!" });
+});
+// stroage path for uploaded photos
+const storage = multer.memoryStorage()
+const  filename = (req, file, cb) => {
+        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+            cb(null, true)
+        } else {
+            cb(null, false)
+        }
+      };
+const upload = multer({
+        storage: storage,
+        limits: {
+            fileSize: 1024 * 1024 * 5
+        },
+        filename : filename
+      })
+      
 // adding new coffee to db
 app.post('/api/create-new-coffee', upload.single('image'), (req, res, next) => {
-  let newTCoffee = {
+  let newCoffee = {
       name: req.body.title,
       desc: req.body.desc,
       price: req.body.price,
@@ -55,7 +77,7 @@ app.post('/api/create-new-coffee', upload.single('image'), (req, res, next) => {
   })
   .catch(console.error);
 });
-
+//////////////////////////////////////////////////////////////////////////////////////////////
     // const session = await stripe.checkout.sessions.create({
     //   payment_method_types: ['card'],
     //   line_items: [
