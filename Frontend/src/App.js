@@ -15,11 +15,12 @@ const stripePromise = loadStripe(`${process.env.PUBLISHABLE_KEY}`)
 
 function App() {
   const [coffees, setCoffees] = useState(coffeesData)
-  
+  // //////example to make http request to sever///////
   useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
-      .then((data) => setCoffees(data.name));
+      .then((coffees) => setCoffees(coffees.name));
+
   }, []);
   return (
     <Elements stripe={stripePromise}>
