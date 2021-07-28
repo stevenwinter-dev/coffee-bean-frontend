@@ -2,7 +2,7 @@ import './App.css';
 import Coffees from './components/Coffees/Coffees';
 import Hero from './components/Hero/Hero';
 import Nav from './components/Nav/Nav';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import coffeesData from './coffeesData';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import CoffeeDetails from './components/CoffeeDetails/CoffeeDetails';
@@ -16,6 +16,11 @@ const stripePromise = loadStripe(`${process.env.PUBLISHABLE_KEY}`)
 function App() {
   const [coffees, setCoffees] = useState(coffeesData)
   
+  useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setCoffees(data.name));
+  }, []);
   return (
     <Elements stripe={stripePromise}>
       <Router className="App">
@@ -31,11 +36,6 @@ function App() {
   ////////////////////TESTING THE DATEBASE CONNECTION////////////////////////////////
   // const [data, setData] = React.useState(null);
 
-  // React.useEffect(() => {
-  //   fetch("/api")
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data.message));
-  // }, []);
 
   // return (
   //   <div className="App">
