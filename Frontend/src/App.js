@@ -21,14 +21,21 @@ function App() {
 
 
   // //////example to make http request to sever///////
-  // const [data, setData] = useState(null)
-  // useEffect(() => {
-  //   axios
-  //   .get("/api")
-  //     .then((res) => setData(res.data.message))
-  //     .catch((error) => console.log(error))
-  // }, []);
+  const fetchData = async () => {
+    let response = await axios(`/api/index`)
+    console.log(response.data)
+    setCoffees(response.data)
+  }
+  useEffect(() => {
+    fetchData()
+    console.log(coffees)
+  }, [])
 
+
+
+const handleClick=()=>{
+  console.log(coffees)
+}
   return (
     // <p>{!data ? "Loading..." : data}</p> // test code to render from server 
     <Elements stripe={stripePromise}>
@@ -40,6 +47,7 @@ function App() {
         <Route path='/cart' exact component={Cart} />
         <Footer />
       </Router>
+      <button onClick={handleClick}>click</button>
     </Elements>
   );
 }
