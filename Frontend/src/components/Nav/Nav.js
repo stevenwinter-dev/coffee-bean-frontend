@@ -27,15 +27,15 @@ const Nav = () => {
                 <h1 onClick={closeMobile}>COFFEE BEAN</h1>
             </Link>
             <ul>
-                <Link to='/'><li>link1</li></Link>
-                <Link to='/'><li>link1</li></Link>
+                <Link to='/login'><li>Login</li></Link>
+                <Link to='/dashboard'><li>Profile</li></Link>
                 <Link to='/'><li>link1</li></Link>
                 <Link to='/cart'><li><i className="fas fa-shopping-cart"></i>(1)</li></Link>
             </ul>
             {isOpen ? <div className='hamburger-menu hamburger-container'>
                 <ul>
-                    <Link to='/'><li onClick={closeMobile}>link1</li></Link>
-                    <Link to='/'><li onClick={closeMobile}>link1</li></Link>
+                    <Link to='/login'><li onClick={closeMobile}>Login</li></Link>
+                    <Link to='/dashboard'><li onClick={closeMobile}>Profile</li></Link>
                     <Link to='/'><li onClick={closeMobile}>link1</li></Link>
                     <Link to='/cart'><li onClick={closeMobile}><i className="fas fa-shopping-cart"></i>(1)</li></Link>
                 </ul>
