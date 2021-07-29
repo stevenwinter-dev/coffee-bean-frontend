@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react'
 import Coffees from './components/Coffees/Coffees';
 import Hero from './components/Hero/Hero';
 import Nav from './components/Nav/Nav';
@@ -10,19 +11,26 @@ import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+import Coffee from './components/Coffee/Coffee';
+import axios from 'axios';
 
 const stripePromise = loadStripe(`${process.env.PUBLISHABLE_KEY}`)
 
 function App() {
   const [coffees, setCoffees] = useState(coffeesData)
-  // //////example to make http request to sever///////
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((coffees) => setCoffees(coffees.name));
 
-  }, []);
+
+  // //////example to make http request to sever///////
+  // const [data, setData] = useState(null)
+  // useEffect(() => {
+  //   axios
+  //   .get("/api")
+  //     .then((res) => setData(res.data.message))
+  //     .catch((error) => console.log(error))
+  // }, []);
+
   return (
+    // <p>{!data ? "Loading..." : data}</p> // test code to render from server 
     <Elements stripe={stripePromise}>
       <Router className="App">
         <Nav />
@@ -34,18 +42,6 @@ function App() {
       </Router>
     </Elements>
   );
-  ////////////////////TESTING THE DATEBASE CONNECTION////////////////////////////////
-  // const [data, setData] = React.useState(null);
-
-
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
-  //       <p>{!data ? "Loading..." : data}</p>
-  //     </header>
-  //   </div>
-  // );
 }
 
 export default App;
