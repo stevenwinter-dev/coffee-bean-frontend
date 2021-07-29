@@ -24,7 +24,7 @@ function App() {
   const fetchData = async () => {
     let response = await axios(`/api/index`)
     console.log(response.data)
-    setCoffees([[response.data]])
+    setCoffees(response.data)
   }
   useEffect(() => {
     fetchData()
