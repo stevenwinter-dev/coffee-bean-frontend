@@ -17,25 +17,19 @@ import axios from 'axios';
 const stripePromise = loadStripe(`${process.env.PUBLISHABLE_KEY}`)
 
 function App() {
-  const [coffees, setCoffees] = useState(coffeesData)
+  const [coffees, setCoffees] = useState([])
 
 
   // //////example to make http request to sever///////
   const fetchData = async () => {
     let response = await axios(`/api/index`)
     console.log(response.data)
-    setCoffees(response.data)
+    setCoffees([[response.data]])
   }
   useEffect(() => {
     fetchData()
-    console.log(coffees)
   }, [])
 
-
-
-const handleClick=()=>{
-  console.log(coffees)
-}
   return (
     // <p>{!data ? "Loading..." : data}</p> // test code to render from server 
     <Elements stripe={stripePromise}>
@@ -47,7 +41,6 @@ const handleClick=()=>{
         <Route path='/cart' exact component={Cart} />
         <Footer />
       </Router>
-      <button onClick={handleClick}>click</button>
     </Elements>
   );
 }
