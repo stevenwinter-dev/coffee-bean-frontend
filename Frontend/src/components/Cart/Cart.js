@@ -3,7 +3,7 @@ import CartItem from '../CartItem/CartItem'
 import './Cart.css'
 import { useState } from 'react'
 import cartData from '../../cartData'
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
 
 const Cart = () => {
@@ -11,8 +11,7 @@ const Cart = () => {
     const [checkingOut, setCheckingOut] = useState(false)
     const [isProcessing, setProcessingTo] = useState(false);
     const [checkoutError, setCheckoutError] = useState();
-    const stripe = useStripe()
-    const elements = useElements();
+
     const totalPrice = cart.reduce((a, b) => {
         return a + b.price}, 0)
 
@@ -30,39 +29,7 @@ const Cart = () => {
             }
         }
 
-        const cardElement = elements.getElement("card");
         
-        try {
-        const { data: clientSecret } = await axios.post('http://localhost:3001/api/create-checkout-session', {
-            amount : totalPrice,
-            billing_details: BillingDetails
-        })
-
-        const paymentMethodReq = await stripe.createPaymentMethod({
-        type: "card",
-        card: cardElement,
-        billing_details: BillingDetails
-      });
-      if (paymentMethodReq.error) {
-        setCheckoutError(paymentMethodReq.error.message);
-        setProcessingTo(false);
-        return;
-      }
-
-      const { error } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: paymentMethodReq.paymentMethod.id
-      });
-
-      if (error) {
-        setCheckoutError(error.message);
-        setProcessingTo(false);
-        return;
-      }
-
-    //   onSuccessfulCheckout();
-    } catch (err) {
-      setCheckoutError(err.message);
-    }
 }
 
     const handleCheckout = () => {
@@ -70,6 +37,29 @@ const Cart = () => {
         form.style.display = 'block'
         setCheckingOut(true)
     }
+
+    const makePayment = token => {
+        const body = {
+            token, 
+            cart
+        }
+        const headers = {
+            "Content-Type": "application/json"
+        }
+        //UPDATE TO AXIOS
+        return fetch('/api/payment', {
+            method: "POST",
+            headers,
+            body: JSON.stringify(body)
+        })
+        .then(res => {
+            console.log(`RESPONSE ${res}`)
+            const {status} = res
+            console.log(`STATUS ${status}`)
+        })
+        .catch(err => console.log(err))
+    }
+
     return (
         <main>
             <div className="cart">
@@ -90,10 +80,14 @@ const Cart = () => {
                         <input id="state" type="text" name='state'/>
                         <label htmlFor="zip">Zip</label>
                         <input id="zip" type="number" name='zip'/>
-                        <div className="card-container">
-                            <CardElement />
-                        </div>
-                        <input type="submit" value='submit' />
+                        
+                        {/* <input type="submit" value='submit' /> */}
+                        <StripeCheckout stripeKey='pk_test_lOdDQfzqfyxcLovxwkLgniBU' token={makePayment} name='pay' amount={totalPrice * 100}>
+                            <div className="checkout-btn-container">
+                                {/* <button className='checkout-btn'>Buy Now</button> */}
+                                <input className='checkout-btn' type="submit" value='Buy Now' />
+                            </div>
+                        </StripeCheckout>
                     </form>
                     
                 </div>
