@@ -13,6 +13,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import Coffee from './components/Coffee/Coffee';
 import axios from 'axios';
+import AddCoffee from './components/AddCoffee/AddCoffee';
 
 const stripePromise = loadStripe(`${process.env.PUBLISHABLE_KEY}`)
 
@@ -31,7 +32,6 @@ function App() {
   }, [])
 
   return (
-    // <p>{!data ? "Loading..." : data}</p> // test code to render from server 
     <Elements stripe={stripePromise}>
       <Router className="App">
         <Nav />
@@ -39,6 +39,7 @@ function App() {
         <Route path='/' exact render={props => <Coffees coffees={coffees} /> }/>
         <Route path='/coffee/:id' render={props => <CoffeeDetails match={props.match} />} />
         <Route path='/cart' exact component={Cart} />
+        <Route path='/dashboard/new' exact component={AddCoffee} />
         <Footer />
       </Router>
     </Elements>
