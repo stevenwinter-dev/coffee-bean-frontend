@@ -44,8 +44,6 @@
 }
 
 .shipping-container {
-    display: none;
-    transition: 0.9s;
     width: 80%;
 }
 
