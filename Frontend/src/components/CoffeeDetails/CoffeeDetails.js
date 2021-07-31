@@ -29,7 +29,7 @@ const CoffeeDetails = ({ match }) => {
 
     //Change CSS for selected weight.
     useEffect(() => {
-            if(selectedWeight === '.8oz') {
+            if(selectedWeight === '8oz') {
                 setPrice(10)
             } else if (selectedWeight === '12oz') {
                 setPrice(15)
