@@ -3,12 +3,9 @@ import './Nav.css'
 import { Link } from 'react-router-dom'
 import { Twirl as Hamburger } from 'hamburger-react'
 import { useState } from 'react'
-import {useAuth} from "../../context/AuthContext"
 
 const Nav = () => {
     const [isOpen, setOpen] = useState(false)
-
-    const {currentUser}=useAuth() 
 
     const handleBurger = () => {
         const nav = document.querySelector('nav')
@@ -28,7 +25,7 @@ const Nav = () => {
             </Link>
             <ul>
               
-                {currentUser ? <Link to='/Dashboard'><li>Profile</li></Link> : <Link to='/login'><li>Login</li></Link>}
+                <Link to='/'><li>link1</li></Link>
                 <Link to='/'><li>link1</li></Link>
                 <Link to='/'><li>link1</li></Link>
                 <Link to='/cart'><li><i className="fas fa-shopping-cart"></i>(1)</li></Link>
