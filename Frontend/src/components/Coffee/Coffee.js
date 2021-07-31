@@ -7,7 +7,7 @@ const Coffee = ({coffee}) => {
             <div className='coffee'>
                 <div className="coffee-content">
                     {/* IMG src will be link to multer img */}
-                    <img src='/images/coffeebag1.jpeg' alt={coffee.name} />
+                    <img src={coffee.img} alt={coffee.name} />
                     <h3>{coffee.name}</h3>
                     <p>{coffee.roast}</p>
                     <p>{coffee.flavor}</p>

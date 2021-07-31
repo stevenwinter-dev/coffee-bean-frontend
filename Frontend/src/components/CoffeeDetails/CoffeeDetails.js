@@ -60,7 +60,7 @@ const CoffeeDetails = ({ match }) => {
         <div>
         { !isLoading ? 
         <main className='coffee-details'>
-            <img src='/images/coffeebag1.jpeg' alt={coffee.name} />
+            <img src={coffee.img} alt={coffee.name} />
             <div className="coffee-details-content">
                 <h2>{coffee.name}</h2>
                 <p>${price}</p>
