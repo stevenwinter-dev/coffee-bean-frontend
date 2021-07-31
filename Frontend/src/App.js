@@ -45,6 +45,7 @@ function App() {
   return (
     <Elements stripe={stripePromise}>
       <Router className="App">
+        <AuthProvider>
         <Nav />
         <Route path='/' exact component={Hero} />
         <Route path='/' exact render={props => <Coffees coffees={coffees} /> }/>
@@ -60,6 +61,7 @@ function App() {
         <Route exact path="/forgot-password" component={ForgotPassword} />
 >>>>>>> 30747b3 (auth setup & css)
         <Footer />
+        </AuthProvider>
       </Router>
     </Elements>
   );
