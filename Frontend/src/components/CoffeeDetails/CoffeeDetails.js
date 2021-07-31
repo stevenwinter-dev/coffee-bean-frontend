@@ -7,7 +7,7 @@ const CoffeeDetails = ({ match }) => {
     //Coffee that is displayed
     const [coffee, setCoffee] = useState({})
     //Weight selected by customer
-    const [selectedWeight, setSelectedWeight] = useState('.8oz')
+    const [selectedWeight, setSelectedWeight] = useState('8oz')
     //Price based on weight
     const [price, setPrice] = useState(coffee.price)
     //Cart items, add to cart
