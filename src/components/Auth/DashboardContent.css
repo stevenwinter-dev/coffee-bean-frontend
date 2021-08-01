@@ -1,5 +1,5 @@
 .dashboard-content-container {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     margin-top: 25px;
@@ -7,6 +7,10 @@
 
 .dashboard-content-container h2 {
     margin-top: 25px;
+}
+
+.dashboard-content-coffee-list {
+    margin: 0px 25px;
 }
 
 .dashboard-content-content {
@@ -35,6 +39,8 @@
 
 .dashboard-content-container .add-coffee-form-container {
     width: 100%;
+    margin: 0%;
+    border-radius: .25rem;
 }
 
 .dashboard-content-container .icon-container i {
@@ -47,4 +53,32 @@
     width: 100%;
     text-align: center;
     color: white;
+}
+
+.edited {
+    position: absolute;
+    background-color: green;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.back-container {
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: center;
+    margin-bottom: 45px;
+    transition: .3s;
+    border-bottom: 1px solid transparent;
+}
+
+.back-container p {
+    margin-bottom: 0;
+}
+
+.back-container:hover, .back-container i:hover {
+    color: #0d6efd!important;
+    border-bottom: 1px solid #0d6efd;
 }

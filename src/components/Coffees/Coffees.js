@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Coffees = ({ coffees }) => {
     return (
         <main className='coffees'>
-            {coffees && coffees.map(coffee => <Link to={`/coffee/${coffee._id}`}><Coffee coffee={coffee} /></Link>)}
+            {coffees && coffees.map(coffee => <Link to={`/coffee/${coffee._id}`} key={coffee._id}><Coffee coffee={coffee} /></Link>)}
         </main>
     )
 }
