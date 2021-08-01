@@ -1,0 +1,50 @@
+.dashboard-content-container {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.dashboard-content-container h2 {
+    margin-top: 25px;
+}
+
+.dashboard-content-content {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0px;
+}
+
+.dashboard-content-content p {
+    width: 300px;
+}
+
+.dashboard-content-container i:hover{
+    color: green;
+}
+
+.dashboard-content-container i:last-of-type:hover{
+    color: red;
+}
+
+.dashboard-content-container i {
+    transition: .1s;
+    cursor: pointer;
+    font-size: 1.3rem;
+} 
+
+.dashboard-content-container .add-coffee-form-container {
+    width: 100%;
+}
+
+.dashboard-content-container .icon-container i {
+    margin: 0px 15px;
+}
+
+.deleted {
+    position: absolute;
+    background-color: red;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
