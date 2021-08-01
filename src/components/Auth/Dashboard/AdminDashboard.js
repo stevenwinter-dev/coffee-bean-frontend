@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Card } from "react-bootstrap"
-import { useAuth } from "../../context/AuthContext"
 import axios from 'axios'
-import './DashboardContent.css'
+import './AdminDashboard.css'
 
 const DashboardContent = () => {
-    const { currentUser } = useAuth()
     //Pulls all coffees from DB
     const [coffees, setCoffees] = useState(null)
     //Has a coffee been selected for edit?
@@ -53,6 +51,7 @@ const DashboardContent = () => {
                 weight: e.target.weight.value,
                 img: e.target.imgURL.value
             })
+            fetchData()
             setEdited(true)
             setTimeout(() => {
                 setEdited(false)
@@ -63,8 +62,8 @@ const DashboardContent = () => {
           setSelected(false)
       }
     return (
-        // Conditionally render if currentUser === admin
-        <Card className='dashboard-content-container'>
+        <div className='dashboardContent'>
+            <Card className='dashboard-content-container'>
            {deleted && <div className='deleted'>Successfully deleted</div> }
            {edited && <div className='edited'>Successfully edited</div> }
         {/* if a coffee has not been selected for edit, show all.
@@ -103,13 +102,14 @@ const DashboardContent = () => {
                         <input className='create-btn' type="submit" value='Edit' />
                     </div>
                     <div className='back-container' onClick={handleBack}>
-                        <i class="fas fa-long-arrow-alt-left"></i>
+                        <i className="fas fa-long-arrow-alt-left"></i>
                         <p>Back to Stock</p>
                     </div>
                 </form>
             </div>
             }
-        </Card>
+            </Card>
+        </div>
     )
 }
 
