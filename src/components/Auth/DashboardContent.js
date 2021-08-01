@@ -11,18 +11,22 @@ const DashboardContent = () => {
     const [selected, setSelected] = useState(false)
     const [editCoffee, setEditCoffee] = useState(null)
     const [deleted, setDeleted] = useState(false)
+    
     const fetchData = async () => {
         let response = await axios(`/api/index`)
         console.log(response.data)
         setCoffees(response.data)
       }
+
       useEffect(() => {
         fetchData()
       }, [])
+
       const handleEdit = (coffee) => {
           setSelected(true)
           setEditCoffee(coffee)
       }
+
       const handleDelete = (coffee) => {
         console.log(coffee._id)
         axios.delete(`/api/delete/${coffee._id}`)
@@ -32,6 +36,7 @@ const DashboardContent = () => {
         }, 3000);
         fetchData()
       }
+
       const handleUpdate = (e) => {
             e.preventDefault()
             console.log(e.target)
