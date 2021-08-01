@@ -3,6 +3,8 @@ import React, { useState } from "react"
 import { Card, Button, Alert } from "react-bootstrap"
 import { useAuth } from "../../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import DashboardContent from "./DashboardContent"
+import './Dashboard.css'
 
 
 export default function Dashboard() {
@@ -34,6 +36,7 @@ export default function Dashboard() {
                     <Button variant="link" onClick={handleLogout}>Log Out</Button>
                 </div>
             </Card>
+            <DashboardContent />
         </div>
     )
 }
