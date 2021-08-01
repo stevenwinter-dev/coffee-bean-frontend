@@ -16,18 +16,13 @@ import Signup from "./components/Auth/Signup";
 import Login from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import UpdateProfile from "./components/Auth/UpdateProfile";
-import Dashboard from './components/Auth/Dashboard';
+import Dashboard from './components/Auth/Dashboard/Dashboard';
 import { AuthProvider } from "./context/AuthContext"
 import PrivateRoute from "./components/Auth/PrivateRoute"
-
-
-
 
 function App() {
   const [coffees, setCoffees] = useState([])
 
-
-  // //////example to make http request to sever///////
   const fetchData = async () => {
     let response = await axios(`/api/index`)
     console.log(response.data)

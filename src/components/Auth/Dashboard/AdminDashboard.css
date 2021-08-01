@@ -1,3 +1,7 @@
+.dashboardContent {
+    width: 100%;
+}
+
 .dashboard-content-container {
     width: 100%;
     display: flex;

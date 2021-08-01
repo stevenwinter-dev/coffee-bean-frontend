@@ -1,16 +1,20 @@
 import React, { useState } from "react"
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button, Alert } from "react-bootstrap"
-import { useAuth } from "../../context/AuthContext"
+import { useAuth } from "../../../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
-import DashboardContent from "./DashboardContent"
 import './Dashboard.css'
+import CustomerDashboard from "./CustomerDashboard"
+import AdminDashboard from "./AdminDashboard"
 
 
 export default function Dashboard() {
     const [error, setError] = useState("")
+    const [isAdmin, setIsAdmin] = useState(true)
     const { currentUser, logout } = useAuth()
     const history = useHistory
+
+    // currentUser === 'admin' ? setIsAdmin(true) : setIsAdmin(false) 
 
     async function handleLogout() {
         setError("")
@@ -36,7 +40,7 @@ export default function Dashboard() {
                     <Button variant="link" onClick={handleLogout}>Log Out</Button>
                 </div>
             </Card>
-            <DashboardContent />
+            {isAdmin ? <AdminDashboard /> : <CustomerDashboard />}
         </div>
     )
 }
