@@ -5,25 +5,32 @@ import { useState } from 'react'
 import cartData from '../../cartData'
 import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
+import { useAuth } from "../../context/AuthContext"
 
 const Cart = () => {
     const [cart, setCart] = useState(cartData)
    
     const [isProcessing, setProcessingTo] = useState(false);
     const [checkoutError, setCheckoutError] = useState();
-
+    const { currentUser } = useAuth()
     const totalPrice = cart.reduce((a, b) => {
         return a + b.price}, 0)
 
     const handleFormSubmit = async e => {
         e.preventDefault()
     }
+    const order = {
+        email: currentUser.email,
+        name: cart.map(item => item.name),
+        totalPrice: totalPrice
+    }
 
 
     const makePayment = token => {
         const body = {
             token, 
-            cart
+            cart,
+            order
         }
         const headers = {
             "Content-Type": "application/json"
