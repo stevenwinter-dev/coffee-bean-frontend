@@ -24,7 +24,7 @@ const CoffeeDetails = ({ match }) => {
         setSelectedWeight(e)
     }
 
-    //DOESNT WORK YET. Add item to cart
+    //Add item to cart
     const handleAddToCart = () => {
         axios.post(`/api/cart/${id}`, {
             email: currentUser.email,
