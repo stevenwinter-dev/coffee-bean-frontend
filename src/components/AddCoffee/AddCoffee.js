@@ -2,7 +2,7 @@ import React from 'react'
 import './AddCoffee.css'
 import axios from 'axios'
 
-const AddCoffee = () => {
+const AddCoffee = ({update}) => {
     const handleSubmit = (e) => {
         console.log(e.target)
         e.preventDefault()
@@ -15,9 +15,11 @@ const AddCoffee = () => {
             weight: e.target.weight.value,
             img: e.target.imgURL.value
         })
+        update()
     }
     return (
         <div className='add-coffee-form-container'>
+            <h2>Add New:</h2>
             <form action="" onSubmit={handleSubmit}  className='add-coffee-form' encType="multipart/form-data">
                 <label htmlFor="name">Name</label>
                 <input id="name" type="text" name='name'/>
