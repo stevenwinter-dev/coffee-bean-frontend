@@ -10,7 +10,7 @@ import AdminDashboard from "./AdminDashboard"
 
 export default function Dashboard() {
     const [error, setError] = useState("")
-    const [isAdmin, setIsAdmin] = useState(true)
+    const [isAdmin, setIsAdmin] = useState(false)
     const { currentUser, logout } = useAuth()
     const history = useHistory
 

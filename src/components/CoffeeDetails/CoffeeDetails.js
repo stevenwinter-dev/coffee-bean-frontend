@@ -2,8 +2,10 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import './CoffeeDetails.css'
 import axios from 'axios'
+import { useAuth } from "../../context/AuthContext"
 
 const CoffeeDetails = ({ match }) => {
+    const { currentUser } = useAuth()
     //Coffee that is displayed
     const [coffee, setCoffee] = useState({})
     //Weight selected by customer
@@ -24,7 +26,10 @@ const CoffeeDetails = ({ match }) => {
 
     //DOESNT WORK YET. Add item to cart
     const handleAddToCart = () => {
-        console.log('hiii')
+        axios.post(`/api/cart/${id}`, {
+            email: currentUser.email,
+            coffee: id
+        })
     }
 
     //Change CSS for selected weight.

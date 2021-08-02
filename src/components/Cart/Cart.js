@@ -22,7 +22,8 @@ const Cart = () => {
     const order = {
         email: currentUser.email,
         name: cart.map(item => item.name),
-        totalPrice: totalPrice
+        totalPrice: totalPrice,
+        ids: cart.map(item => item.id)
     }
 
 
