@@ -9,6 +9,7 @@
     align-items: center;
     padding: 25px 0px;
     width: 100%;
+    
 }
 
 .cart-item-detail {
@@ -38,7 +39,7 @@
 
 .add {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 
 .add i {
@@ -64,6 +65,10 @@
 .add .fa-minus:hover {
     color: red;
     background-color: darkgray;
+}
+
+*, ::after, ::before {
+    box-sizing:content-box!important;
 }
 
 @media only screen and (max-width: 500px) {
