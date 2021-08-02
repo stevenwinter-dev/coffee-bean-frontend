@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Card } from "react-bootstrap"
 import axios from 'axios'
 import './AdminDashboard.css'
+import AddCoffee from '../../AddCoffee/AddCoffee'
 
 const DashboardContent = () => {
     //Pulls all coffees from DB
@@ -108,6 +109,9 @@ const DashboardContent = () => {
                 </form>
             </div>
             }
+            </Card>
+            <Card className='dashboard-content-container'>
+                <AddCoffee update={fetchData} />
             </Card>
         </div>
     )
