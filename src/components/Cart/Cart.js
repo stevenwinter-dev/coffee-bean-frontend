@@ -12,6 +12,7 @@ const Cart = () => {
     const [cart, setCart] = useState(cartData)
     const [cart1, setCart1] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [paid, setPaid] = useState(false)
     
     const { currentUser } = useAuth()
 
@@ -76,15 +77,15 @@ const Cart = () => {
             body: JSON.stringify(body)
         })
         .then(res => {
-            console.log(`RESPONSE ${res}`)
-            const {status} = res
-            console.log(`STATUS ${status}`)
+            axios.delete(`/api/cartDelete/${currentUser.email}`)
+            setPaid(true)
         })
         .catch(err => console.log(err))
     }
 
     return (
         <main>
+        {paid && <Redirect to='/' />}
             <div className="cart">
                 <h2>Shopping Cart</h2>
                 {cart1 && cart1.map(item => <CartItem item={item} key={item.id} handleDeleteFromCart={handleDeleteFromCart} />)}
