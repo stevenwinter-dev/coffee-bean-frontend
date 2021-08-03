@@ -67,7 +67,7 @@
     background-color: darkgray;
 }
 
-*, ::after, ::before {
+.cart-item *, ::after, ::before {
     box-sizing:content-box!important;
 }
 

@@ -18,6 +18,10 @@
     margin: 25px 0;
 }
 
+.coffee-details-content h2, .coffee-details-content div {
+    margin-bottom: 1rem;
+}
+
 .coffee-details-content .weight {
     border: 1px solid darkgray;
     padding: 10px;
