@@ -26,6 +26,7 @@ const CartItem = ({ item, handleDeleteFromCart, grandTotalCalc }) => {
     //Handle plus coffee
     const handlePlus = () => {
         setItemNumber(itemNumber+1)
+        grandTotalCalc()
     }
 
     useEffect(() => {
@@ -37,10 +38,11 @@ const CartItem = ({ item, handleDeleteFromCart, grandTotalCalc }) => {
         itemNumber > 1 ?
         setItemNumber(itemNumber-1) :
         setItemNumber(1)
+        grandTotalCalc()
     }
 
     return (
-        <div className='cart-item'>
+        <div className='cart-item' onChange={grandTotalCalc}>
             {coffee && <div className="cart-item-content">
                 <div className='cart-item-detail'>
                     <i className="fas fa-times" onClick={() => handleDeleteFromCart(coffee)}></i>
@@ -62,7 +64,7 @@ const CartItem = ({ item, handleDeleteFromCart, grandTotalCalc }) => {
                     </div>
                 </div>
                 <div className='cart-item-detail'>
-                    <p>${itemPrice}</p>
+                    <p>$<span className='itemPrice'>{itemPrice}</span></p>
                 </div>
             </div>}
         </div>
