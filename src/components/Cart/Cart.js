@@ -49,13 +49,15 @@ const Cart = () => {
         .then(fetchData())
     }
 
-    
 
     //Working on grand total
     const grandTotalCalc = (price) => {
+        let priceArr = []
         console.log(`PRICE ${price}`)
-        // setGrandTotal(grandTotal + parseInt(coffee))
-        // console.log(`GRAND TOTAL IS ${grandTotal}`)
+        const prices = document.querySelectorAll('.itemPrice')
+        prices.forEach(price => priceArr.push(parseInt(price.innerText)))
+        console.log(priceArr)
+        setGrandTotal(priceArr.reduce((a,b) => a+b))
     }
 
     //Not updating from live data because we are not passing in a price.
@@ -104,7 +106,7 @@ const Cart = () => {
                 {cart1 && cart1.map(item => <CartItem item={item} key={item.id} handleDeleteFromCart={handleDeleteFromCart} grandTotalCalc={grandTotalCalc}  />)}
                 <div className="shipping-container">
                    {cart1 && cart1.length ? <form action="/api/create-checkout-session" onSubmit={handleFormSubmit}  className='shipping-form' >
-                        <StripeCheckout stripeKey='pk_test_lOdDQfzqfyxcLovxwkLgniBU' token={makePayment} name='pay' amount={totalPrice * 100} shippingAddress billingAddress >
+                        <StripeCheckout stripeKey='pk_test_lOdDQfzqfyxcLovxwkLgniBU' token={makePayment} name='pay' amount={grandTotal * 100} shippingAddress billingAddress >
                             <div className="checkout-btn-container">
                                 <input className='checkout-btn' type="submit" value='Buy Now' />
                             </div>
