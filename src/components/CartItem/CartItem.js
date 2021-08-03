@@ -2,15 +2,19 @@ import React, {useState, useEffect} from 'react'
 import './CartItem.css'
 import axios from 'axios'
 
-const CartItem = ({ item, handleDeleteFromCart }) => {
+const CartItem = ({ item, handleDeleteFromCart, handlePlus, handleMinus, itemNumber, grandTotalCalc }) => {
     const [coffee, setCoffee] = useState(null)
     
     //DB query by id for one coffee
     const fetchData = async () => {
         let response = await axios(`/api/${item}`)
         setCoffee(response.data)
+        
       }
-    
+    //Adding coffee price to grandTotal in Cart component
+      useEffect(() => {
+        coffee && grandTotalCalc(coffee.price[0])
+      }, [coffee])
       //Fetches data and refreshes cart dom elements
       useEffect(() => {
         fetchData()
@@ -33,13 +37,13 @@ const CartItem = ({ item, handleDeleteFromCart }) => {
                 </div>
                 <div className='cart-item-detail'>
                     <div className="add">
-                        <i className="fas fa-plus"></i>
-                        <p>1</p>
-                        <i className="fas fa-minus"></i>
+                        <i className="fas fa-plus" onClick={handlePlus}></i>
+                        <p>{itemNumber}</p>
+                        <i className="fas fa-minus" onClick={handleMinus}></i>
                     </div>
                 </div>
                 <div className='cart-item-detail'>
-                    <p>${coffee.price[0]}</p>
+                    <p>${coffee.price[0]*itemNumber}</p>
                 </div>
             </div>}
         </div>
