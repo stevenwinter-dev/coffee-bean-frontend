@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './CoffeeDetails.css'
 import axios from 'axios'
 import { useAuth } from "../../context/AuthContext"
+import {  Redirect } from 'react-router'
 
 const CoffeeDetails = ({ match }) => {
     const { currentUser } = useAuth()
@@ -18,6 +19,10 @@ const CoffeeDetails = ({ match }) => {
     const [isLoading, setIsLoading] = useState(true)
     //ID of coffee pased from previous component, Coffees
     const id = match.params.id
+    //Redirect after added to cart 
+    const [added, setAdded] = useState(false)
+    //Redirect if not logged in 
+    const [login, setLogin] = useState(false)
 
     //Select weight
     const handleWeightClick = (e) => {
@@ -26,10 +31,15 @@ const CoffeeDetails = ({ match }) => {
 
     //Add item to cart
     const handleAddToCart = () => {
+        currentUser !== null ? 
         axios.post(`/api/cart/${id}`, {
             email: currentUser.email,
             coffee: id
         })
+        // .then(alert('added to cart'))
+        .then(setAdded(true))
+        :
+        setLogin(true)
     }
 
     //Change CSS for selected weight.
@@ -63,6 +73,8 @@ const CoffeeDetails = ({ match }) => {
 
     return (
         <div>
+        {added && <Redirect to='/cart' />}
+        {login && <Redirect to='/login' />}
         { !isLoading ? 
         <main className='coffee-details'>
             <img src={coffee.img} alt={coffee.name} />
