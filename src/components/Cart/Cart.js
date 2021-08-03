@@ -13,7 +13,6 @@ const Cart = () => {
     const [cart1, setCart1] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [paid, setPaid] = useState(false)
-    const [itemNumber, setItemNumber] = useState(1)
     const [grandTotal, setGrandTotal] = useState(0)
     const { currentUser } = useAuth()
 
@@ -21,8 +20,9 @@ const Cart = () => {
     const fetchData = async () => {
         let response = await axios(`/api/cart/${currentUser.email}`)
         // console.log(response.data[0].coffee_id)
+        console.log(response.data[0].coffee)
         if (response.data.length > 0) {
-            setCart1(response.data[0].coffee_id)
+            setCart1(response.data[0].coffee)
         } else {
             setCart1(null)
         }
@@ -48,20 +48,11 @@ const Cart = () => {
         .then(setCart1(newCart))
     }
 
-    //Handle plus coffee
-    const handlePlus = () => {
-        setItemNumber(itemNumber+1)
-    }
-
-    //Handle minus coffee
-    const handleMinus = () => {
-        itemNumber > 1 ?
-        setItemNumber(itemNumber-1) :
-        setItemNumber(1)
-    }
+    
 
     //Working on grand total
-    const grandTotalCalc = (coffee) => {
+    const grandTotalCalc = (price) => {
+        console.log(`PRICE ${price}`)
         // setGrandTotal(grandTotal + parseInt(coffee))
         // console.log(`GRAND TOTAL IS ${grandTotal}`)
     }
@@ -109,7 +100,7 @@ const Cart = () => {
         {paid && <Redirect to={{pathname: '/thanks', totalPrice:{totalPrice}}} />}
             <div className="cart">
                 <h2>Shopping Cart</h2>
-                {cart1 && cart1.map(item => <CartItem item={item} key={item.id} handleDeleteFromCart={handleDeleteFromCart} handlePlus={handlePlus} handleMinus={handleMinus} itemNumber={itemNumber} grandTotalCalc={grandTotalCalc}  />)}
+                {cart1 && cart1.map(item => <CartItem item={item} key={item.id} handleDeleteFromCart={handleDeleteFromCart} grandTotalCalc={grandTotalCalc}  />)}
                 <div className="shipping-container">
                    {cart1 && cart1.length ? <form action="/api/create-checkout-session" onSubmit={handleFormSubmit}  className='shipping-form' >
                         <StripeCheckout stripeKey='pk_test_lOdDQfzqfyxcLovxwkLgniBU' token={makePayment} name='pay' amount={totalPrice * 100} shippingAddress billingAddress >

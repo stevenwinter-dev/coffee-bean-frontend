@@ -29,12 +29,14 @@ const CoffeeDetails = ({ match }) => {
         setSelectedWeight(e)
     }
 
-    //Add item to cart
+   //Add item to cart
     const handleAddToCart = () => {
         currentUser !== null ? 
         axios.post(`/api/cart/${id}`, {
             email: currentUser.email,
-            coffee: id
+            coffee: id,
+            price: price,
+            weight: selectedWeight
         })
         // .then(alert('added to cart'))
         .then(setAdded(true))
@@ -73,7 +75,7 @@ const CoffeeDetails = ({ match }) => {
 
     return (
         <div>
-        {added && <Redirect to='/cart' />}
+        {added && <Redirect to='/' />}
         {login && <Redirect to='/login' />}
         { !isLoading ? 
         <main className='coffee-details'>
@@ -85,7 +87,7 @@ const CoffeeDetails = ({ match }) => {
                 <div>{coffee.weight.map(weight => <span className='weight' key={weight} id={weight === selectedWeight ? 'selected-weight' : undefined} onClick={() => handleWeightClick(weight)}>{weight}</span>)}</div>
                 <p>Roast: {coffee.roast}</p>
                 <p>Region: {coffee.region}</p>
-                <button onClick={handleAddToCart}>Add to Cart ${price}</button>
+                <button onClick={() => handleAddToCart(coffee)}>Add to Cart ${price}</button>
             </div>
         </main> 
         : 
