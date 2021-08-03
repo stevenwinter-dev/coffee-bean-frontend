@@ -13,7 +13,8 @@ const Cart = () => {
     const [cart1, setCart1] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [paid, setPaid] = useState(false)
-    
+    const [itemNumber, setItemNumber] = useState(1)
+    const [grandTotal, setGrandTotal] = useState(0)
     const { currentUser } = useAuth()
 
     //Fetchs ShoppingCart with user email
@@ -46,7 +47,26 @@ const Cart = () => {
         //Set Cart to new array
         .then(setCart1(newCart))
     }
-    
+
+    //Handle plus coffee
+    const handlePlus = () => {
+        setItemNumber(itemNumber+1)
+    }
+
+    //Handle minus coffee
+    const handleMinus = () => {
+        itemNumber > 1 ?
+        setItemNumber(itemNumber-1) :
+        setItemNumber(1)
+    }
+
+    //Working on grand total
+    const grandTotalCalc = (coffee) => {
+        // setGrandTotal(grandTotal + parseInt(coffee))
+        // console.log(`GRAND TOTAL IS ${grandTotal}`)
+    }
+
+    //Not updating from live data because we are not passing in a price.
     const totalPrice = cart.reduce((a, b) => {
         return a + b.price}, 0)
 
@@ -88,7 +108,7 @@ const Cart = () => {
         {paid && <Redirect to='/' />}
             <div className="cart">
                 <h2>Shopping Cart</h2>
-                {cart1 && cart1.map(item => <CartItem item={item} key={item.id} handleDeleteFromCart={handleDeleteFromCart} />)}
+                {cart1 && cart1.map(item => <CartItem item={item} key={item.id} handleDeleteFromCart={handleDeleteFromCart} handlePlus={handlePlus} handleMinus={handleMinus} itemNumber={itemNumber} grandTotalCalc={grandTotalCalc}  />)}
                 <div className="shipping-container">
                    {cart1 && cart1.length ? <form action="/api/create-checkout-session" onSubmit={handleFormSubmit}  className='shipping-form' >
                         <StripeCheckout stripeKey='pk_test_lOdDQfzqfyxcLovxwkLgniBU' token={makePayment} name='pay' amount={totalPrice * 100} shippingAddress billingAddress >
