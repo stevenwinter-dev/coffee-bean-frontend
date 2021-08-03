@@ -14,12 +14,13 @@ const Cart = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [paid, setPaid] = useState(false)
     const [grandTotal, setGrandTotal] = useState(0)
+    const [cartId, setCartId] = useState(null)
     const { currentUser } = useAuth()
-
+    
     //Fetchs ShoppingCart with user email
     const fetchData = async () => {
         let response = await axios(`/api/cart/${currentUser.email}`)
-        // console.log(response.data[0].coffee_id)
+        setCartId(response.data[0]._id)
         console.log(response.data[0].coffee)
         if (response.data.length > 0) {
             setCart1(response.data[0].coffee)
@@ -35,17 +36,17 @@ const Cart = () => {
 
     //Passed down to CartItem component
     const handleDeleteFromCart = (id) => {
-        //filter out id, return array cart1
-        const newCart = cart1.filter(cart1 => cart1 !== id._id)
-        //Delete id from ShoppingCart DB, pass in email and new array
+        console.log(cartId)
+        console.log(id._id)
+        //Delete coffee obj from ShoppingCart DB, pass in email and coffee to remove
         axios.delete(`/api/cart/${id._id}`, {
             data: {
                 email: currentUser.email,
-                arr: newCart
+                remove: id._id
             }
         })
-        //Set Cart to new array
-        .then(setCart1(newCart))
+        //Refetch Data
+        .then(fetchData())
     }
 
     
