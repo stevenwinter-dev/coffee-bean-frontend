@@ -10,11 +10,14 @@ import AdminDashboard from "./AdminDashboard"
 
 export default function Dashboard() {
     const [error, setError] = useState("")
-    const [isAdmin, setIsAdmin] = useState(true)
     const { currentUser, logout } = useAuth()
+    const [isAdmin, setIsAdmin] = useState(amBoss())
+    
+    function amBoss() {
+        return currentUser.email==='steveplayshorn@gmail.com'||currentUser.email==='samualljackson@gmail.com'
+    }
     const history = useHistory
 
-    // currentUser === 'admin' ? setIsAdmin(true) : setIsAdmin(false) 
 
     async function handleLogout() {
         setError("")
