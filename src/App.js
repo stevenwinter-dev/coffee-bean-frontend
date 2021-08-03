@@ -15,23 +15,24 @@ import UpdateProfile from "./components/Auth/UpdateProfile";
 import Dashboard from './components/Auth/Dashboard/Dashboard';
 import { AuthProvider } from "./context/AuthContext"
 import PrivateRoute from "./components/Auth/PrivateRoute"
+import Thanks from './components/Thanks/Thanks';
 
 function App() {
 
   return (
       <Router className="App">
         <AuthProvider>
-
         <Nav />
         <Route path='/' exact component={Hero} />
         <Route path='/' exact render={props => <Coffees /> }/>
         <Route path='/coffee/:id' render={props => <CoffeeDetails match={props.match} />} />
         <Route path='/cart' exact component={Cart} />
-      <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      <PrivateRoute exact path="/update-profile" component={UpdateProfile} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/signup" component={Signup} />
-      <Route exact path="/forgot-password" component={ForgotPassword} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/update-profile" component={UpdateProfile} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path='/thanks' render={props => <Thanks props={props} />} />
         <Footer />
         </AuthProvider>
       </Router>
