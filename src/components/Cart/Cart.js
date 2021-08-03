@@ -96,7 +96,7 @@ const Cart = () => {
                                 <input className='checkout-btn' type="submit" value='Buy Now' />
                             </div>
                         </StripeCheckout>
-                    </form> : <Link to='/'>Check out our coffees!</Link>}
+                    </form> : <div className='cart-back-container'><p>You haven't added any coffees yet</p><Link to='/'><p>Check out our coffees!</p></Link></div>}
                 </div>
             </div>
         </main>

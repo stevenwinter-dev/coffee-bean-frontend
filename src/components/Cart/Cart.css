@@ -56,6 +56,18 @@
     padding: 8px;
 }
 
+.cart-back-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-back-container a {
+    text-decoration: none;
+    color: #0d6efd;
+}
+
 @media only screen and (max-width: 500px) {
     .cart {
         margin: 10% 3%;
