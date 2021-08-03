@@ -105,7 +105,8 @@ const Cart = () => {
 
     return (
         <main>
-        {paid && <Redirect to='/' />}
+        {/* {paid && <Redirect to='/thanks' totalPrice={totalPrice} />} */}
+        {paid && <Redirect to={{pathname: '/thanks', totalPrice:{totalPrice}}} />}
             <div className="cart">
                 <h2>Shopping Cart</h2>
                 {cart1 && cart1.map(item => <CartItem item={item} key={item.id} handleDeleteFromCart={handleDeleteFromCart} handlePlus={handlePlus} handleMinus={handleMinus} itemNumber={itemNumber} grandTotalCalc={grandTotalCalc}  />)}
