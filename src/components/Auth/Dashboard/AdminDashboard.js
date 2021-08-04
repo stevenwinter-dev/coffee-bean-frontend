@@ -17,7 +17,7 @@ const DashboardContent = () => {
     const [edited, setEdited] = useState(false)
 
     const fetchData = async () => {
-        let response = await axios(`/api/index`)
+        let response = await axios(`https://coffeebeanbackend.herokuapp.com/api/index`)
         console.log(response.data)
         setCoffees(response.data)
       }
@@ -33,7 +33,7 @@ const DashboardContent = () => {
 
       const handleDelete = (coffee) => {
         console.log(coffee._id)
-        axios.delete(`https://coffee-bean3.herokuapp.com/api/delete/${coffee._id}`)
+        axios.delete(`https://coffeebeanbackend.herokuapp.com/api/delete/${coffee._id}`)
         setDeleted(true)
         setTimeout(() => {
             setDeleted(false)
@@ -43,7 +43,7 @@ const DashboardContent = () => {
 
       const handleUpdate = (e) => {
             e.preventDefault()
-            axios.put(`/api/edit/${editCoffee._id}`, {
+            axios.put(`https://coffeebeanbackend.herokuapp.com/api/edit/${editCoffee._id}`, {
                 name: e.target.name.value,
                 flavor: e.target.flavor.value,
                 roast: e.target.roast.value,
