@@ -1,63 +1,98 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './CoffeeDetails.css'
-
-//Delete exampleCoffee once DB connected
-const exampleCoffee = {
-    "name": "Good Coffee",
-    "price": 15,
-    "flavors": ['hazelnut', 'vanilla'],
-    "img": "../images/coffeebag1.jpeg",
-    "weight": ['10.5oz', '16oz', '5lb'],
-    "roast": "dark",
-    "region": "Boston",
-    "id": 123
-}
+import axios from 'axios'
+import { useAuth } from "../../context/AuthContext"
+import {  Redirect } from 'react-router'
 
 const CoffeeDetails = ({ match }) => {
+    const { currentUser } = useAuth()
+    //Coffee that is displayed
     const [coffee, setCoffee] = useState({})
-    const [selectedWeight, setSelectedWeight] = useState(exampleCoffee.weight[0])
-    const [price, setPrice] = useState(exampleCoffee.price)
+    //Weight selected by customer
+    const [selectedWeight, setSelectedWeight] = useState('8oz')
+    //Price based on weight
+    const [price, setPrice] = useState(coffee.price)
+    //Cart items, add to cart
     const [cart, setCart] = useState('')
+    //Has the api request completed?
+    const [isLoading, setIsLoading] = useState(true)
+    //ID of coffee pased from previous component, Coffees
     const id = match.params.id
+    //Redirect after added to cart 
+    const [added, setAdded] = useState(false)
+    //Redirect if not logged in 
+    const [login, setLogin] = useState(false)
 
+    //Select weight
     const handleWeightClick = (e) => {
         setSelectedWeight(e)
     }
 
+   //Add item to cart
     const handleAddToCart = () => {
-        console.log('hiii')
+        currentUser !== null ? 
+        axios.post(`/api/cart/${id}`, {
+            email: currentUser.email,
+            coffee: id,
+            price: price,
+            weight: selectedWeight
+        })
+        // .then(alert('added to cart'))
+        .then(setAdded(true))
+        :
+        setLogin(true)
     }
 
+    //Change CSS for selected weight.
     useEffect(() => {
-            if(selectedWeight === '10.5oz') {
+            if(selectedWeight === '8oz') {
+                setPrice(10)
+            } else if (selectedWeight === '12oz') {
                 setPrice(15)
-            } else if (selectedWeight === '16oz') {
-                setPrice(22)
             } else {
-                setPrice(35)
+                setPrice(20)
             }
     }, [selectedWeight])
 
-    useEffect(() => {
-        //API request with id once DB connected
-        console.log('api request')
-        // setCoffee()
+    //Change isLoading state
+    const loading = () => {
+        setIsLoading(false)
+    }
+
+    //Fetch coffee info. Scroll to top of 
+    const fetchData = async () => {
+        let response = await axios(`/api/${id}`)
+        setCoffee(response.data)
+        console.log(response.data)
+        loading()
         window.scrollTo(0, 0)
+      }
+
+    useEffect(() => {
+    fetchData()
     }, [])
+
     return (
+        <div>
+        {added && <Redirect to='/' />}
+        {login && <Redirect to='/login' />}
+        { !isLoading ? 
         <main className='coffee-details'>
-            <img src={exampleCoffee.img} alt={exampleCoffee.name} />
+            <img src={coffee.img} alt={coffee.name} />
             <div className="coffee-details-content">
-                <h2>{exampleCoffee.name}</h2>
+                <h2>{coffee.name}</h2>
                 <p>${price}</p>
-                <p>{exampleCoffee.flavors.map(flav => <span key={flav}>{flav}</span>)}</p>
-                <div>{exampleCoffee.weight.map(weight => <span className='weight' key={weight} id={weight === selectedWeight ? 'selected-weight' : undefined} onClick={() => handleWeightClick(weight)}>{weight}</span>)}</div>
-                <p>Roast: {exampleCoffee.roast}</p>
-                <p>Region: {exampleCoffee.region}</p>
-                <button onClick={handleAddToCart}>Add to Cart ${price}</button>
+                <p>{coffee.flavor}</p>
+                <div>{coffee.weight.map(weight => <span className='weight' key={weight} id={weight === selectedWeight ? 'selected-weight' : undefined} onClick={() => handleWeightClick(weight)}>{weight}</span>)}</div>
+                <p>Roast: {coffee.roast}</p>
+                <p>Region: {coffee.region}</p>
+                <button onClick={() => handleAddToCart(coffee)}>Add to Cart ${price}</button>
             </div>
-        </main>
+        </main> 
+        : 
+        <p>loading</p>}
+        </div>
     )
 }
 
