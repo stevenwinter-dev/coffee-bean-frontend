@@ -19,7 +19,7 @@ const Cart = () => {
     
     //Fetchs ShoppingCart with user email
     const fetchData = async () => {
-        let response = await axios(`/api/cart/${currentUser.email}`)
+        let response = await axios(`https://coffee-bean3.herokuapp.com/api/cart/${currentUser.email}`)
         setCartId(response.data[0]._id)
         console.log(response.data[0].coffee)
         if (response.data.length > 0) {
@@ -39,7 +39,7 @@ const Cart = () => {
         console.log(cartId)
         console.log(id._id)
         //Delete coffee obj from ShoppingCart DB, pass in email and coffee to remove
-        axios.delete(`/api/cart/${id._id}`, {
+        axios.delete(`https://coffee-bean3.herokuapp.com/api/cart/${id._id}`, {
             data: {
                 email: currentUser.email,
                 remove: id._id

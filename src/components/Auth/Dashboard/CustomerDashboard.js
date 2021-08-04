@@ -12,7 +12,7 @@ const CustomerDashboard = () => {
     const { currentUser } = useAuth()
     //Fetch cart
     const fetchCart = async () => {
-        let response = await axios(`/api/cart/${currentUser.email}`)
+        let response = await axios(`https://coffee-bean3.herokuapp.com/api/cart/${currentUser.email}`)
         console.log(response.data)
         setCart(response.data)
       }

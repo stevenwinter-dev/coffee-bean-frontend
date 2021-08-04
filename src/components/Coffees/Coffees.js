@@ -8,7 +8,7 @@ import axios from 'axios'
 const Coffees = () => {
     const [coffees, setCoffees] = useState('')
     const fetchData = async () => {
-        let response = await axios(`/api/index`)
+        let response = await axios(`https://coffee-bean3.herokuapp.com/api/index`)
         console.log(response.data)
         setCoffees(response.data)
       }

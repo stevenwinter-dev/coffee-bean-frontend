@@ -33,7 +33,7 @@ const DashboardContent = () => {
 
       const handleDelete = (coffee) => {
         console.log(coffee._id)
-        axios.delete(`/api/delete/${coffee._id}`)
+        axios.delete(`https://coffee-bean3.herokuapp.com/api/delete/${coffee._id}`)
         setDeleted(true)
         setTimeout(() => {
             setDeleted(false)

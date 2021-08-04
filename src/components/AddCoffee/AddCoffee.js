@@ -6,7 +6,7 @@ const AddCoffee = ({update}) => {
     const handleSubmit = (e) => {
         console.log(e.target)
         e.preventDefault()
-        axios.post('/api/create-new-coffee', {
+        axios.post('https://coffee-bean3.herokuapp.com/api/create-new-coffee', {
             name: e.target.name.value,
             flavor: e.target.flavor.value,
             roast: e.target.roast.value,

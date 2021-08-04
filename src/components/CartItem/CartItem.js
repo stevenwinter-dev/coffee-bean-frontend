@@ -10,7 +10,7 @@ const CartItem = ({ item, handleDeleteFromCart, grandTotalCalc }) => {
     console.log(item)
     //DB query by id for one coffee
     const fetchData = async () => {
-        let response = await axios(`/api/${item.coffee_id}`)
+        let response = await axios(`https://coffee-bean3.herokuapp.com/api/${item.coffee_id}`)
         setCoffee(response.data)
         
       }
