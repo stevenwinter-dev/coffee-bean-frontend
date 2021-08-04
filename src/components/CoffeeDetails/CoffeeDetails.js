@@ -75,7 +75,7 @@ const CoffeeDetails = ({ match }) => {
 
     return (
         <div>
-        {added && <Redirect to='/' />}
+        {added && <Redirect to={{pathname: '/', success: true}} />}
         {login && <Redirect to='/login' />}
         { !isLoading ? 
         <main className='coffee-details'>

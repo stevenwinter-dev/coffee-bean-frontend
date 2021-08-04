@@ -24,7 +24,7 @@ function App() {
         <AuthProvider>
         <Nav />
         <Route path='/' exact component={Hero} />
-        <Route path='/' exact render={props => <Coffees /> }/>
+        <Route path='/' exact render={props => <Coffees props={props} /> }/>
         <Route path='/coffee/:id' render={props => <CoffeeDetails match={props.match} />} />
         <Route path='/cart' exact component={Cart} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
