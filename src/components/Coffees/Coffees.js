@@ -27,7 +27,7 @@ const Coffees = ({props}) => {
         fetchData()
       }, [])
     return (
-        <main className='coffees'>
+        <main className='coffees' id="coffees-display">
           {props.location.success && <p className='cart-success'>Successfully added to cart</p>}
           {coffees && coffees.map(coffee => <Link to={`/coffee/${coffee._id}`} key={coffee._id}><Coffee coffee={coffee} /></Link>)}
         </main>

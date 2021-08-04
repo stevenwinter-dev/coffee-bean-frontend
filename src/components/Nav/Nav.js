@@ -20,6 +20,16 @@ const Nav = () => {
         document.querySelector('nav').classList.remove('active')
     }
 
+    const scrollToCoffees = () => {
+        if(window.location.pathname === '/') {
+            const coffees = document.querySelector('#coffees-display')
+            coffees.scrollIntoView()
+        } else {
+            window.location.replace('https://coffeebean3.herokuapp.com/')
+        }
+        closeMobile()
+    }
+
     const { currentUser } = useAuth()
 
     return (
@@ -31,15 +41,14 @@ const Nav = () => {
             <ul>
               
                 {currentUser ?<Link to='/dashboard'><li>Profile</li></Link>:<Link to='/login'><li>Login</li></Link>}
-                <Link to='/'><li>link1</li></Link>
-                <Link to='/'><li>link1</li></Link>
+                <li onClick={scrollToCoffees} className='li-hover'>Coffees</li>
                 {currentUser && <Link to='/cart'><li><i className="fas fa-shopping-cart"></i></li></Link>}
              </ul>
             {isOpen ? <div className='hamburger-menu hamburger-container'>
                 <ul>
                     {currentUser ? <Link to='/dashboard'><li onClick={closeMobile}>Profile</li></Link> : <Link to='/login'><li onClick={closeMobile}>Login</li></Link>}
                     
-                    <Link to='/'><li onClick={closeMobile}>link1</li></Link>
+                    <li onClick={scrollToCoffees}>Coffees</li>
                     {currentUser && <Link to='/cart'><li onClick={closeMobile}><i className="fas fa-shopping-cart"></i></li></Link>}
                 </ul>
             </div> : null}
