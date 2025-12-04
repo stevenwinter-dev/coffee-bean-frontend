@@ -12,6 +12,8 @@
 
 .coffee img {
     width: 100%;
+    max-height: 400px;
+    object-fit: cover;
 }
 
 .coffee-content {
@@ -30,4 +32,16 @@
 .coffee-content p {
     font-size: 1.15rem;
     margin: 1px 0px;
+}
+
+.cart-success {
+    position: fixed;
+    background-color: green;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    padding: 30px;
+    font-size: 1.5rem;
 }

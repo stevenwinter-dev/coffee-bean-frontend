@@ -2,17 +2,17 @@ import React from 'react'
 import './Coffee.css'
 
 const Coffee = ({coffee}) => {
-    console.log(coffee.id)
+    console.log(coffee)
     return (
             <div className='coffee'>
                 <div className="coffee-content">
+                    {/* IMG src will be link to multer img */}
                     <img src={coffee.img} alt={coffee.name} />
                     <h3>{coffee.name}</h3>
-                    <p>${coffee.price}/lb</p>
-                    <p>{coffee.flavors}</p>
-                    {/* <p>{coffee.weight}</p> */}
                     <p>{coffee.roast}</p>
+                    <p>{coffee.flavor}</p>
                     <p>{coffee.region}</p>
+                    <p>From ${coffee.price[0]}</p>
                 </div>
             </div>
     )

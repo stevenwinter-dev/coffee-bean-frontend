@@ -28,7 +28,9 @@ nav ul {
 
 nav li {
     list-style-type: none;
+    margin-top: 15px;
     margin-left: 5px;
+    font-size: 20px;
 }
 
 .hamburger-react, .hamburger-container {
@@ -45,7 +47,9 @@ nav li {
     display: none;
 }
 
-
+.li-hover {
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 500px) {
     nav li {

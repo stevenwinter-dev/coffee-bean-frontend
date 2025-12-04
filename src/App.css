@@ -39,5 +39,9 @@
 
 body {
   background-image: linear-gradient(135deg, #fdfcfb 0%, #c4a790 100%);
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Titillium Web', sans-serif!important;
+}
+
+a:hover {
+  color: black!important;
 }
