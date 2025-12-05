@@ -28,7 +28,7 @@
     "eject": "react-scripts eject"
   },
   "engines": {
-    "node": "16.x",
+    "node": "18.x",
     "npm": ">= 4.4.0"
   },
   "proxy": "https://coffee-bean-backend-production.up.railway.app",
