@@ -2,15 +2,9 @@
 
 ![Coffee Bean](https://i.imgur.com/LGQnpGP.jpg)
 
-<<<<<<< HEAD
 ## [Check out the app!](https://coffee-bean-frontend-production.up.railway.app/)
 
 ## [Backend Code](https://github.com/stevenwinter-dev/coffee-bean-backend)
-=======
-## [Check out the app!](https://coffeebean3.herokuapp.com/)
-
-## [Backend Code](https://github.com/Groundsandbeans/Coffee_beans_backend)
->>>>>>> origin/master
 
 ## Introduction
 
@@ -39,7 +33,7 @@ Upon successful checkout, the customer has an option to receive a text message r
 - Firebase
 - Stripe API
 - Twilio API
-- Heroku
+- Railway
 - MongoDB Atlas
 
 ## Install Instructions

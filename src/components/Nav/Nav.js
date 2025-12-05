@@ -25,7 +25,7 @@ const Nav = () => {
             const coffees = document.querySelector('#coffees-display')
             coffees.scrollIntoView()
         } else {
-            window.location.replace('https://coffeebean3.herokuapp.com/')
+            window.location.replace('https://coffee-bean-frontend-production.up.railway.app/')
         }
         closeMobile()
     }

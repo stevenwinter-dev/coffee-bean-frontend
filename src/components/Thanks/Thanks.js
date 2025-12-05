@@ -11,7 +11,7 @@ const Thanks = ({props}) => {
     const handleSubmit = (e) => {
         const phoneInput = document.querySelector('#phone')
         e.preventDefault()
-        axios.post('https://coffeebeanbackend.herokuapp.com/thanks', {
+        axios.post('https://coffee-bean-backend-production.up.railway.app/thanks', {
                 totalPrice: total,
                 phoneNumber: phoneInput.value
         })

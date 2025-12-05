@@ -17,12 +17,8 @@
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
-<<<<<<< HEAD
     "react-scripts": "^5.0.1",
-=======
-    "react-scripts": "4.0.3",
     "react-stripe-checkout": "^2.6.3",
->>>>>>> origin/master
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -31,13 +27,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-<<<<<<< HEAD
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
+    "npm": ">= 4.4.0"
   },
-=======
-  "proxy": "https://coffee-bean3.herokuapp.com",
->>>>>>> origin/master
+  "proxy": "https://coffee-bean-backend-production.up.railway.app",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -55,9 +49,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": ">= 6.9.4",
-    "npm": ">= 4.4.0"
   }
 }

@@ -32,7 +32,7 @@ const CoffeeDetails = ({ match }) => {
    //Add item to cart
     const handleAddToCart = () => {
         currentUser !== null ? 
-        axios.post(`https://coffeebeanbackend.herokuapp.com/api/cart/${id}`, {
+        axios.post(`https://coffee-bean-backend-production.up.railway.app/api/cart/${id}`, {
             email: currentUser.email,
             coffee: id,
             price: price,
@@ -62,7 +62,7 @@ const CoffeeDetails = ({ match }) => {
 
     //Fetch coffee info. Scroll to top of 
     const fetchData = async () => {
-        let response = await axios(`https://coffeebeanbackend.herokuapp.com/api/${id}`)
+        let response = await axios(`https://coffee-bean-backend-production.up.railway.app/api/${id}`)
         setCoffee(response.data)
         console.log(response.data)
         loading()

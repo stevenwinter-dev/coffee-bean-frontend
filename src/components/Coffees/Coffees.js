@@ -8,7 +8,7 @@ import axios from 'axios'
 const Coffees = ({props}) => {
     const [coffees, setCoffees] = useState('')
     const fetchData = async () => {
-        let response = await axios(`https://coffeebeanbackend.herokuapp.com/api/index`)
+        let response = await axios(`https://coffee-bean-backend-production.up.railway.app/api/index`)
         console.log(response.data)
         setCoffees(response.data)
       }
