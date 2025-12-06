@@ -28,7 +28,7 @@
     "eject": "react-scripts eject"
   },
   "engines": {
-    "node": "18.x",
+    "node": ">=20.0.0",
     "npm": ">= 4.4.0"
   },
   "overrides": {
